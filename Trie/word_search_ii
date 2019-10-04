@@ -1,0 +1,83 @@
+"""
+    Given a 2D board and a list of words from the dictionary, find all words
+    in the board.
+
+    Each word must be constructed from letters of sequentially adjacent cell,
+    where "adjacent" cells are those horizontally or vertically neighboring.
+    The same letter cell may not be used more than once in a word.
+"""
+
+class TreeNode:
+    def __init__(self):
+        self.is_end = False
+        self.children = {}
+
+class Trie:
+    def __init__(self):
+        self.root = TreeNode()
+    
+    def insert(self, word):
+        node = self.root
+        
+        for c in word:
+            if c not in node.children:
+                node.children[c] = TreeNode()
+            
+            node = node.children[c]
+        
+        node.is_end = True
+                
+
+class Solution:
+    def findWordsUtil(self, row, col, board, visited, node, result, word):
+        ch = board[row][col]
+        visited[row][col] = True
+        
+        if ch not in node.children:
+            visited[row][col] = False
+            return
+        
+        word += ch
+        next_node = node.children[ch]
+        last_row = len(board)-1
+        last_col = len(board[0])-1
+        
+        if next_node.is_end:
+            result.append(word)
+        
+        if row != 0 and not visited[row-1][col]:
+            self.findWordsUtil(row-1, col, board, visited, \
+                               next_node, result, word[:])
+            
+        if col != last_col and not visited[row][col+1]:
+            self.findWordsUtil(row, col+1, board, visited, \
+                               next_node, result, word[:])
+            
+        if row != last_row and not visited[row+1][col]:
+            self.findWordsUtil(row+1, col, board, visited, \
+                               next_node, result, word[:])
+            
+        if col != 0 and not visited[row][col-1]:
+            self.findWordsUtil(row, col-1, board, visited, \
+                               next_node, result, word[:])
+        
+        visited[row][col] = False
+        
+            
+    def findWords(self, board: List[List[str]], words: List[str]) -> List[str]:
+        if not words or not board:
+            return []
+        
+        trie = Trie()
+        result = []
+        
+        for word in words:
+            trie.insert(word)
+            
+        for i in range(len(board)):
+            for j in range(len(board[0])):
+                visited = [[False for elem in row] for row in board]
+                self.findWordsUtil(i, j, board, visited, trie.root, result, "")
+        
+        return list(set(result))
+                
