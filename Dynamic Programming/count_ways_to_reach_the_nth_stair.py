@@ -12,7 +12,6 @@
     Nth stair. Answer your output % 10^9+7.
 """
 
-
 class Solution:
     def __init__(self):
         self.dp = []
