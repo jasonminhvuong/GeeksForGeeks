@@ -1,3 +1,23 @@
+"""
+    Given N and E, the number of nodes and edges in a directed graph. The task
+    is to do Breadth First Search of this graph.
+
+    Input:
+    The first line of input contains the number of test cases T. For each test
+    case, the first line of input contains N and E separated by space, and next
+    line contains 2*E numbers (E pairs as X Y) are given in the next line which
+    represents an edge from X to Y.
+
+    Output:
+    For each testcase, print the BFS of the graph starting from 0.
+
+    Note: The expected output button always produces BFS starting from node 0.
+
+    User Task:
+    Since, this is a functional problem, your task is to complete the function
+    bfs() which do BFS of the given graph starting from node 0 and prints the
+    nodes in BFS order.
+"""
 def bfs(g,N):
     '''
     can use queue module already imported
