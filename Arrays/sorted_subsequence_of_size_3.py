@@ -16,7 +16,8 @@
 """
 
 #Your task is to complete this function
-#Your function should return a array/list containing the triplet, if no such triplet exist's then return empty array/list
+#Your function should return a array/list containing the triplet,
+#if no such triplet exist's then return empty array/list
 def find3number(n, A):
     if n < 3:
         return []
