@@ -30,4 +30,4 @@ def preorder(root):
     
     print(root.data, end=" ")
     preorder(root.left)
-    preorder(root.right
+    preorder(root.right)
