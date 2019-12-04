@@ -38,3 +38,4 @@ def main():
     for _ in range(t):
         n = int(input())
         arr = [int(elem) for elem in input().split()]
+        print(sol.equilibrium_point(n, arr))
